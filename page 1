@@ -1,0 +1,42 @@
+import SwiftUI
+
+struct ContentView: View {
+    var body: some View {
+        ZStack {
+            Color(red: 253/255, green: 246/255, blue: 225/255)
+                .ignoresSafeArea()
+            VStack(spacing:100) {
+                Text("Welcome")
+                    .font(.largeTitle)
+                    .foregroundStyle(Color(red: 42/255, green: 71/255, blue: 16/255))
+                VStack {
+                    Text("to MealSmart where you can")
+                    Text("Eat healthy, spend smart.") }
+                Button("Login"){
+                    
+                }
+                .padding()
+                .frame(width:300, height:50)
+                .foregroundStyle(Color(red: 253/255, green: 246/255, blue: 225/255))
+                .background((Color(red: 42/255, green: 71/255, blue: 16/255)))
+                .cornerRadius(20)
+                Button("Sign Up"){
+                    
+                }
+                .padding()
+                .frame(width:300, height:50)
+                .foregroundStyle(Color(red: 253/255, green: 246/255, blue: 225/255))
+                .background((Color(red: 42/255, green: 71/255, blue: 16/255)))
+                .cornerRadius(20)
+                
+                
+                
+                
+            }
+            .padding()
+        }
+    }
+}
+#Preview {
+    ContentView()
+}
