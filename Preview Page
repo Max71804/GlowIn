@@ -1,0 +1,129 @@
+//
+//  ContentView.swift
+//  MealSmart1
+//
+//  Created by SandboxLab on 6/30/25.
+//
+
+import SwiftUI
+
+// Function for image creation.
+struct FoodItem: View {
+    let imageName: String
+    let borderColor: Color
+    let borderWidth: CGFloat
+    let size: CGFloat
+    
+    var body: some View {
+        Image(imageName)
+            .resizable()
+            .frame(width: size, height: size)
+            .clipShape(Circle())
+            .overlay(Circle().stroke(borderColor, lineWidth: borderWidth))
+    }
+}
+
+
+struct ContentView: View {
+    
+    var body: some View {
+        
+        
+        ZStack {
+            Color(red: 253/255, green: 246/255, blue: 225/255) // Background color
+                .ignoresSafeArea()
+            Circle() // Upper Circle
+                .scale(1.7)
+                .offset(x:0, y:-500)
+                .foregroundColor(Color(red: 42/255, green: 71/255, blue: 16/255))
+            RoundedRectangle(cornerRadius: 20) // Food display tab
+                .scale(0.8)
+                .foregroundColor(Color(red: 230/255, green: 224/255, blue: 204/255))
+                .offset(x:0, y:25)
+            Rectangle() // Bottom Navigation Bar
+                .fill(Color(red: 230/255, green: 224/255, blue: 204/255))
+                .frame(width: 400, height: 70)
+                .offset(y:400)
+            HStack(spacing: 30){ // Nav. Bar Buttons
+                Button(action: {
+                           print("Browse button tapped!")
+                       }) {
+                           Image("Browse")
+                               .resizable()
+                               .frame(width: 70, height: 70) // Adjust size as needed
+                       }
+                Button(action: {
+                           print("Store button tapped!")
+                       }) {
+                           Image("Store")
+                               .resizable()
+                               .frame(width: 40, height: 40) // Adjust size as needed
+                       }
+                Button(action: {
+                           print("Home button tapped!")
+                       }) {
+                           Image("Home")
+                               .resizable()
+                               .frame(width: 40, height: 40) // Adjust size as needed
+                       }
+                Button(action: {
+                           print("Map button tapped!")
+                       }) {
+                           Image("Map")
+                               .resizable()
+                               .frame(width: 40, height: 40) // Adjust size as needed
+                       }
+                Button(action: {
+                           print("Account button tapped!")
+                       }) {
+                           Image("Account")
+                               .resizable()
+                               .frame(width: 40, height: 40) // Adjust size as needed
+                       }
+            }
+            .offset(y:390)
+            VStack(spacing: 15){ // Displayed recipes.
+                HStack(spacing: 30){
+                    FoodItem(imageName: "Food", borderColor: (Color (red: 42/255, green: 71/255, blue: 16/255)), borderWidth: 6, size: 125)
+                    FoodItem(imageName: "Food", borderColor: (Color (red: 42/255, green: 71/255, blue: 16/255)), borderWidth: 6, size: 125)
+                }
+                HStack(spacing: 30){
+                    FoodItem(imageName: "Food", borderColor: (Color (red: 42/255, green: 71/255, blue: 16/255)), borderWidth: 6, size: 125)
+                    FoodItem(imageName: "Food", borderColor: (Color (red: 42/255, green: 71/255, blue: 16/255)), borderWidth: 6, size: 125)
+                }
+                HStack(spacing: 30){
+                    FoodItem(imageName: "Food", borderColor: (Color (red: 42/255, green: 71/255, blue: 16/255)), borderWidth: 6, size: 125)
+                    FoodItem(imageName: "Food", borderColor: (Color (red: 42/255, green: 71/255, blue: 16/255)), borderWidth: 6, size: 125)
+                }
+                HStack(spacing: 30){
+                    FoodItem(imageName: "Food", borderColor: (Color (red: 42/255, green: 71/255, blue: 16/255)), borderWidth: 6, size: 125)
+                    FoodItem(imageName: "Food", borderColor: (Color (red: 42/255, green: 71/255, blue: 16/255)), borderWidth: 6, size: 125)
+                }
+            }
+                
+            Text("**This** is what we have planned for **you...**")
+                    .font(.title)
+                    .foregroundColor(Color(red: 253/255, green: 246/255, blue: 225/255))
+                    .offset(x: 1, y: -350)
+            
+            
+             
+            
+            
+            
+            
+        }
+    }
+}
+                
+                
+                
+                
+                
+                
+                
+    
+
+#Preview {
+    ContentView()
+}
