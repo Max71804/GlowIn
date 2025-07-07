@@ -7,19 +7,24 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct login: View {
      @State var username = ""
     @State var password = ""
+    let orange = Color(red: 255/255, green: 93/255, blue: 0/255)       // #FF5D00
+    let cream = Color(red: 255/255, green: 239/255, blue: 193/255)     // #FFEFC1
+    let darkGreen = Color(red: 54/255, green: 79/255, blue: 35/255)    // #364F23
+    let softOrange = Color(red: 255/255, green: 202/255, blue: 123/255)
+
     var body: some View {
         ZStack{
-            Color(red: 254/255, green: 246/255, blue: 223/255)
+            Color(red: 255/255, green: 239/255, blue: 193/255)
                 .ignoresSafeArea()
             
             VStack{
                 Text("Login")
                     .font(.largeTitle)
                     .bold()
-                    .foregroundColor(Color(red: 0.125, green: 0.282, blue: 0.004))
+                    .foregroundColor(Color(red: 255/255, green: 93/255, blue: 0/255)  )
                 Text("welcome back! You've been\nmissed")
                     .foregroundColor(Color(red: 0.125, green: 0.282, blue: 0.004))
                     .padding(.top,50)
@@ -30,9 +35,10 @@ struct ContentView: View {
                     .padding()
                     .frame(width: 300, height: 50)
                     .background(Color.black.opacity(0.05))
+                    .foregroundColor(Color(red: 54/255, green: 79/255, blue: 35/255))
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color(red: 0.125, green: 0.282, blue: 0.004), lineWidth: 2)
+                            .stroke(Color(red: 255/255, green: 93/255, blue: 0/255) , lineWidth: 2)
                     )
                     .cornerRadius(10)
                     .padding(.top,60)
@@ -42,9 +48,10 @@ struct ContentView: View {
                     .padding()
                     .frame(width: 300, height: 50)
                     .background(Color.black.opacity(0.05))
+                    .foregroundColor(Color(red: 54/255, green: 79/255, blue: 35/255))
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color(red: 0.125, green: 0.282, blue: 0.004), lineWidth: 2)
+                            .stroke(Color(red: 255/255, green: 93/255, blue: 0/255)  , lineWidth: 2)
                     )
                     .cornerRadius(10)
                     .padding(.horizontal,32)
@@ -90,7 +97,7 @@ struct ContentView: View {
                     }) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 10)
-                                .fill(Color(red: 234/255, green: 226/255, blue: 203/255)) // #EAE2CB
+                                .fill(Color(red: 255/255, green: 202/255, blue: 123/255)) // #EAE2CB
                                 .frame(width: 40, height: 41)
                             
                             Image("apple")
@@ -105,7 +112,7 @@ struct ContentView: View {
                     }) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 10)
-                                .fill(Color(red: 234/255, green: 226/255, blue: 203/255))
+                                .fill(Color(red: 255/255, green: 202/255, blue: 123/255))
                                 .frame(width: 40, height: 41)
                             Image("facebook")
                                 .resizable()
@@ -119,7 +126,7 @@ struct ContentView: View {
                     }) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 10)
-                                .fill(Color(red: 234/255, green: 226/255, blue: 203/255))
+                                .fill(Color(red: 255/255, green: 202/255, blue: 123/255))
                                 .frame(width: 40, height: 41)
                             
                             Image("google")
@@ -133,6 +140,11 @@ struct ContentView: View {
         }
     }
 }
+
+#Preview {
+    login()
+}
+
 
 #Preview {
     ContentView()
