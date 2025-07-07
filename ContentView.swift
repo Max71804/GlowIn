@@ -11,17 +11,20 @@ struct ContentView: View {
     @State var username = ""
     @State var password = ""
     @State var confirmPassword = ""
+    let orange = Color(red: 255/255, green: 93/255, blue: 0/255)       // #FF5D00
+       let cream = Color(red: 255/255, green: 239/255, blue: 193/255)     // #FFEFC1
+       let darkGreen = Color(red: 54/255, green: 79/255, blue: 35/255)    // #364F23
     var body: some View {
         ZStack{
-            Color(red: 254/255, green: 246/255, blue: 223/255)
+            Color(Color(red: 255/255, green: 239/255, blue: 193/255) )
                 .ignoresSafeArea()
             
             VStack{
                 Text("Create Account")
                     .font(.largeTitle)
                     .bold()
-                    .foregroundColor(Color(red: 0.125, green: 0.282, blue: 0.004))
-                Text("Welcome! Ready to have your\nmeals for less?")
+                    .foregroundColor( Color(red: 255/255, green: 93/255, blue: 0/255) )
+                Text("Welcome! Ready to get your\nglow on?")
                     .foregroundColor(Color(red: 0.125, green: 0.282, blue: 0.004))
                     .padding(.top,50)
                     .multilineTextAlignment(.center)
@@ -31,9 +34,11 @@ struct ContentView: View {
                     .padding()
                     .frame(width: 300, height: 50)
                     .background(Color.black.opacity(0.05))
+                    .foregroundColor(Color(red: 54/255, green: 79/255, blue: 35/255))
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color(red: 0.125, green: 0.282, blue: 0.004), lineWidth: 2)
+                            .stroke( Color(red: 255/255, green: 93/255, blue: 0/255), lineWidth: 2)
+                        
                     )
                     .cornerRadius(10)
                     .padding(.top,60)
@@ -43,9 +48,10 @@ struct ContentView: View {
                     .padding()
                     .frame(width: 300, height: 50)
                     .background(Color.black.opacity(0.05))
+                    .foregroundColor(Color(red: 54/255, green: 79/255, blue: 35/255))
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color(red: 0.125, green: 0.282, blue: 0.004), lineWidth: 2)
+                            .stroke( Color(red: 255/255, green: 93/255, blue: 0/255) , lineWidth: 2)
                     )
                     .cornerRadius(10)
                     .padding(.horizontal,32)
@@ -56,9 +62,10 @@ struct ContentView: View {
                      .padding()
                      .frame(width: 300, height: 50)
                      .background(Color.black.opacity(0.05))
+                     .foregroundColor(Color(red: 54/255, green: 79/255, blue: 35/255))
                      .overlay(
                          RoundedRectangle(cornerRadius: 10)
-                             .stroke(Color(red: 0.125, green: 0.282, blue: 0.004), lineWidth: 2)
+                             .stroke( Color(red: 255/255, green: 93/255, blue: 0/255), lineWidth: 2)
                      )
                      .cornerRadius(10)
                      .padding(.horizontal,32)
@@ -79,13 +86,13 @@ struct ContentView: View {
                 //old account styling
                 Button("already have an account?"){
                 }
-                .foregroundColor(Color(red: 0.125, green: 0.282, blue: 0.004))
+                .foregroundColor(Color(red: 54/255, green: 79/255, blue: 35/255))
                 .padding(.top, 8)
                 .font(.caption)
                 
                 //continue with styling
                 Text("or continue with")
-                    .foregroundColor(Color(red: 0.125, green: 0.282, blue: 0.004))
+                    .foregroundColor(Color(red: 54/255, green: 79/255, blue: 35/255))
                     .padding(.top,50)
                 
                 HStack(spacing: 16) {
@@ -95,13 +102,13 @@ struct ContentView: View {
                     }) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 10)
-                                .fill(Color(red: 234/255, green: 226/255, blue: 203/255)) // #EAE2CB
+                                .fill(Color(red: 234/255, green: 226/255, blue: 203/255)) 
                                 .frame(width: 40, height: 41)
                             
                             Image("apple")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 20, height: 20)
+                                .frame(width: 25, height: 25)
                         }
                     }
                     //button for facebook icon
@@ -115,7 +122,7 @@ struct ContentView: View {
                             Image("facebook")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 20, height: 20)
+                                .frame(width: 25, height: 25)
                         }
                     }
                     // button for google icon
@@ -130,13 +137,17 @@ struct ContentView: View {
                             Image("google")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 20, height: 20)
+                                .frame(width: 25, height: 25)
                         }
                     }
                 }
             }
         }
     }
+}
+
+#Preview {
+    ContentView()
 }
 
 #Preview {
