@@ -102,7 +102,7 @@ struct ContentView: View {
                     }) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 10)
-                                .fill(Color(red: 234/255, green: 226/255, blue: 203/255)) 
+                                .fill(Color(red: 255/255, green: 202/255, blue: 123/255)) // #EAE2CB
                                 .frame(width: 40, height: 41)
                             
                             Image("apple")
@@ -117,7 +117,7 @@ struct ContentView: View {
                     }) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 10)
-                                .fill(Color(red: 234/255, green: 226/255, blue: 203/255))
+                                .fill(Color(red: 255/255, green: 202/255, blue: 123/255))
                                 .frame(width: 40, height: 41)
                             Image("facebook")
                                 .resizable()
@@ -131,7 +131,7 @@ struct ContentView: View {
                     }) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 10)
-                                .fill(Color(red: 234/255, green: 226/255, blue: 203/255))
+                                .fill(Color(red: 255/255, green: 202/255, blue: 123/255))
                                 .frame(width: 40, height: 41)
                             
                             Image("google")
@@ -150,6 +150,3 @@ struct ContentView: View {
     ContentView()
 }
 
-#Preview {
-    ContentView()
-}
