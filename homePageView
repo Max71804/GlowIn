@@ -1,0 +1,244 @@
+//
+//  ContentView.swift
+//  MealSmart1
+//
+//  Created by SandboxLab on 6/30/25.
+//
+
+import SwiftUI
+
+extension TimeInterval {
+    var asHMS: String {
+        let hours = Int(self) / 3600
+        let minutes = (Int(self) % 3600) / 60
+        let seconds = Int(self) % 60
+        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+    }
+}
+
+
+
+
+
+extension Color {
+    init(hex: Int, opacity: Double = 1) {
+        self.init(
+            .sRGB,
+            red: Double((hex >> 16) & 0xff) / 255,
+            green: Double((hex >> 08) & 0xff) / 255,
+            blue: Double((hex >> 00) & 0xff) / 255,
+            opacity: opacity
+        )
+    }
+}
+
+// Makes user PFP in a circular format.
+struct Profilepic: View {
+    let imageName: String
+    let borderColor: Color
+    let borderWidth: CGFloat
+    let size: CGFloat
+    
+    var body: some View {
+        Image(imageName)
+            .resizable()
+            .frame(width: size, height: size)
+            .clipShape(Circle())
+            .overlay(Circle().stroke(borderColor, lineWidth: borderWidth))
+    }
+}
+ struct DailyQuest: View {
+    let quest: String
+
+   var body: some View {
+       Rectangle()
+        .fill(Color(hex:0xE77E42))
+        .frame(width: 380, height: 240)
+        .cornerRadius(20)
+        .shadow(color: .black, radius: 1, x: 0, y: 3)
+       Text(quest)
+           .foregroundStyle(Color(hex: 0x364F23))
+           .font(.title2)
+       Image("Trophy")
+           .offset(x: -160, y: -80)
+       Text("Daily Quest:")
+           .offset(x: -80, y: -80)
+           .font(.title2)
+       Button(action: {
+                  print("Complete button tapped!")
+              }) {
+                  Image("Check")
+                      .resizable()
+                      .frame(width: 40, height: 40)
+              }
+              .offset(x: 130, y: 80)
+       Text(" \(TimeInterval(83440).asHMS)")
+           .offset(x: 140, y: -80)
+       Text("time left:")
+           .font(.footnote)
+           .foregroundStyle(Color(hex: 0xFFFFFF))
+           .offset(x: 120, y: -100)
+       Image("ProgressBar")
+           .offset(x: -60, y: 80)
+            
+        }
+   }
+
+
+
+
+struct ContentView: View {
+    
+    var body: some View {
+        @State var text = ""
+        @State var dailyquote = "If you can dream it, you can do it. - Walt Disney"
+        
+        ZStack {
+            Color(hex: 0xFCF1C6) // Background color
+                .ignoresSafeArea()
+            Text("***welcome back,***")
+                .font(.body)
+                .offset(x: -120, y:-320)
+                .foregroundStyle(Color(hex: 0x364F23))
+            Text("**[Insert Name]**")
+                .font(.title2)
+                .offset(x: -100, y:-280)
+                .foregroundStyle(Color(hex: 0xEC682C))
+            Profilepic(imageName: "PFP", borderColor: Color("Black"), borderWidth: 6, size: 65)
+                .offset(x: 150, y: -320)
+            
+            
+            ZStack{ // Quest Tab
+                DailyQuest(quest: "Smile at a Stranger")
+                
+            }
+            .offset(y: -125)
+            
+            ZStack{ //Today's Quote
+                Rectangle()
+                    .fill(Color(hex:0xDCDB95))
+                    .frame(width: 180, height: 180)
+                    .cornerRadius(20)
+                    .shadow(color: .black, radius: 1, x: 0, y: 3)
+                VStack{
+                    Text("**Today's Quote**")
+                        .foregroundStyle(Color(hex: 0x364F23))
+                        .font(.title3)
+                        .offset(y: -30)
+                    
+                    Text(dailyquote)
+                        .frame(width: 155, height: 80)
+                        .padding(.leading, 0)
+                        .foregroundStyle(Color(hex: 0x364F23))
+                        .offset(y: -20)
+                }
+                
+            }
+            .offset(x: -100, y: 100)
+            
+            ZStack{ // Journal Tab
+                Rectangle()
+                    .fill(Color(hex:0xF9DBA4))
+                    .frame(width: 180, height: 180)
+                    .cornerRadius(20)
+                    .shadow(color: .black, radius: 1, x: 0, y: 3)
+                VStack(spacing: 40){
+                    Text("**Journal**")
+                        .font(.title2)
+                        .foregroundStyle(Color(hex: 0x364F23))
+                        .offset(y: 55)
+                    TextField("Type Here", text: $text)
+                        .font(.body)
+                        .frame(width: 160, height: 140)
+                        .foregroundStyle(Color(hex:0x364F23))
+                }
+                .offset(y: -40)
+                
+            }
+            .offset(x: 100, y: 100)
+            
+            ZStack{ // Fitness Tips
+                Rectangle()
+                    .fill(Color(hex:0xF7CE9B))
+                    .frame(width: 360, height: 120)
+                    .cornerRadius(20)
+                    .shadow(color: .black, radius: 1, x: 0, y: 3)
+                VStack(spacing: 40){
+                    Text("**Breathing Exercises**")
+                        .font(.title2)
+                        .foregroundStyle(Color(hex: 0x364F23))
+                    Text("**breathe in... and out**")
+                        .font(.body)
+                        .foregroundStyle(Color(hex: 0x364F23))
+                }
+                
+            }
+            .offset(y: 265)
+            
+
+            Rectangle() // Bottom Navigation Bar
+                .fill(Color(hex: 0xF7CC86))
+                .frame(width: 400, height: 90)
+                .offset(y:400)
+            HStack(spacing: 30){ // Nav. Bar Buttons
+                Button(action: {
+                           print("Map button tapped!")
+                       }) {
+                           Image("Map")
+                               .resizable()
+                               .frame(width: 40, height: 40) // Adjust size as needed
+                       }
+                Button(action: {
+                           print("Achievements button tapped!")
+                       }) {
+                           Image("Achievements")
+                               .resizable()
+                               .frame(width: 40, height: 40) // Adjust size as needed
+                       }
+                Button(action: {
+                           print("Home button tapped!")
+                       }) {
+                           Image("Home")
+                               .resizable()
+                               .frame(width: 40, height: 40) // Adjust size as needed
+                       }
+                Button(action: {
+                           print("Feel Good button tapped!")
+                       }) {
+                           Image("Feel Good")
+                               .resizable()
+                               .frame(width: 40, height: 40) // Adjust size as needed
+                       }
+                Button(action: {
+                           print("Account button tapped!")
+                       }) {
+                           Image("Account")
+                               .resizable()
+                               .frame(width: 40, height: 40) // Adjust size as needed
+                       }
+            }
+            .offset(y:390)
+
+                
+            
+            
+             
+            
+            
+            
+            
+        }
+    }
+}
+                
+                
+                
+                
+                
+                
+                
+    
+
+#Preview {
+    ContentView()
+}
