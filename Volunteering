@@ -1,0 +1,179 @@
+//
+//  ContentView.swift
+//  Feel Good Page (Real)
+//
+//  Created by SandboxLab on 7/7/25.
+//
+
+
+
+import SwiftUI
+
+
+extension Color {
+    init(hex: Int, opacity: Double = 1) {
+        self.init(
+            .sRGB,
+            red: Double((hex >> 16) & 0xff) / 255,
+            green: Double((hex >> 08) & 0xff) / 255,
+            blue: Double((hex >> 00) & 0xff) / 255,
+            opacity: opacity
+        )
+    }
+}
+
+struct Tabmaker: View {
+    let Task: String
+    let Emoji: String
+    let color: Color
+    
+    var body: some View{
+        ZStack{
+            Rectangle()
+                .frame(width: 160, height: 160)
+                .foregroundStyle(Color(color))
+                .cornerRadius(30)
+            Text(Task)
+                .frame(width: 150, height: 100)
+                .font(.title3)
+                .padding(.leading, 20)
+                .offset(x: -15)
+                .foregroundStyle(Color(hex:0x364F23))
+                .bold()
+            Text(Emoji)
+                .font(.title)
+                .offset(x: -60, y:-40)
+        }
+            
+    }
+}
+
+
+
+
+
+
+
+
+struct ContentView: View {
+    
+    var body: some View {
+        
+        
+        ZStack {
+            Color(hex: 0xFCF1C6) // Background color
+                .ignoresSafeArea()
+            Text("**Feel Good**")
+                .font(.largeTitle)
+                .offset(x: -100, y:-320)
+                .foregroundStyle(Color(hex: 0x364F23))
+            Text("**Volunteering**")
+                .font(.title2)
+                .offset(x: -100, y:-260)
+                .foregroundStyle(Color(hex: 0xFF5D00))
+            Text("**Donate**")
+                .font(.title2)
+                .offset(x: 80, y:-260)
+                .foregroundStyle(Color(hex: 0xE77E42))
+            Text("Recent")
+                .font(.largeTitle)
+                .offset(x:-120, y: -180)
+                .foregroundStyle(Color(hex: 0x5B3315))
+            ScrollView(.horizontal, showsIndicators: false){
+                HStack(spacing: 16){
+                    
+                    ForEach(0..<1) { index in
+                        Tabmaker(Task: "Hunger & Homelessness", Emoji: " 🍲 ", color: (Color(hex:0xFFC87B)))
+                        Tabmaker(Task: "Environment & Conservation", Emoji: "🌱", color: (Color(hex:0x9CB62A)))
+                        Tabmaker(Task: "Education & Youth Services", Emoji: "📚", color: (Color(hex:0xE77E42)))
+                    }
+                }
+            }
+            .offset(y: -75)
+            
+            Text("More")
+                .font(.largeTitle)
+                .offset(x:-120, y: 70)
+                .foregroundStyle(Color(hex: 0x5B3315))
+
+            ScrollView(.horizontal, showsIndicators: false){
+                HStack(spacing: 16){
+                    
+                    ForEach(0..<1) { index in
+                        Tabmaker(Task: "Animal Welfare", Emoji: "🐶", color: (Color(hex:0xFFC87B)))
+                        Tabmaker(Task: "Senior Support & Healthcare", Emoji: "🧓", color: (Color(hex:0x9CB62A)))
+                        Tabmaker(Task: "Mental Health", Emoji: "🧠", color: (Color(hex:0xE77E42)))
+                    }
+                }
+            }
+            .offset(y: 175)
+ 
+           
+            
+
+            Rectangle() // Bottom Navigation Bar
+                .fill(Color(hex: 0xF7CC86))
+                .frame(width: 400, height: 90)
+                .offset(y:400)
+            HStack(spacing: 30){ // Nav. Bar Buttons
+                Button(action: {
+                           print("Map button tapped!")
+                       }) {
+                           Image("Map")
+                               .resizable()
+                               .frame(width: 40, height: 40) // Adjust size as needed
+                       }
+                Button(action: {
+                           print("Achievements button tapped!")
+                       }) {
+                           Image("Achievements")
+                               .resizable()
+                               .frame(width: 40, height: 40) // Adjust size as needed
+                       }
+                Button(action: {
+                           print("Home button tapped!")
+                       }) {
+                           Image("Home")
+                               .resizable()
+                               .frame(width: 40, height: 40) // Adjust size as needed
+                       }
+                Button(action: {
+                           print("Feel Good button tapped!")
+                       }) {
+                           Image("Feel Good")
+                               .resizable()
+                               .frame(width: 40, height: 40) // Adjust size as needed
+                       }
+                Button(action: {
+                           print("Account button tapped!")
+                       }) {
+                           Image("Account")
+                               .resizable()
+                               .frame(width: 40, height: 40) // Adjust size as needed
+                       }
+            }
+            .offset(y:390)
+
+                
+            
+            
+             
+            
+            
+            
+            
+        }
+    }
+}
+                
+                
+                
+                
+                
+                
+                
+    
+
+#Preview {
+    ContentView()
+}
