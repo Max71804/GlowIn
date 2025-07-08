@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension TimeInterval {
+extension TimeInterval { // extension for quest timer
     var asHMS: String {
         let hours = Int(self) / 3600
         let minutes = (Int(self) % 3600) / 60
@@ -49,6 +49,7 @@ struct Profilepic: View {
 }
  struct DailyQuest: View {
     let quest: String
+    let streak: Int
 
    var body: some View {
        Rectangle()
@@ -71,7 +72,7 @@ struct Profilepic: View {
                       .resizable()
                       .frame(width: 40, height: 40)
               }
-              .offset(x: 130, y: 80)
+              .offset(x: 100, y: 80)
        Text(" \(TimeInterval(83440).asHMS)")
            .offset(x: 140, y: -80)
        Text("time left:")
@@ -79,7 +80,13 @@ struct Profilepic: View {
            .foregroundStyle(Color(hex: 0xFFFFFF))
            .offset(x: 120, y: -100)
        Image("ProgressBar")
-           .offset(x: -60, y: 80)
+           .offset(x: -70, y: 80)
+       Text("0%")
+           .offset(x: 50, y:80)
+       Text("🔥 \(streak)")
+           .offset(x: 150, y:80)
+           .font(.title2)
+           .foregroundStyle(Color(.white))
             
         }
    }
@@ -103,16 +110,70 @@ struct ContentView: View {
             Text("**[Insert Name]**")
                 .font(.title2)
                 .offset(x: -100, y:-280)
-                .foregroundStyle(Color(hex: 0xEC682C))
+                .foregroundStyle(Color(hex: 0xFF5D00))
             Profilepic(imageName: "PFP", borderColor: Color("Black"), borderWidth: 6, size: 65)
                 .offset(x: 150, y: -320)
             
             
             ZStack{ // Quest Tab
-                DailyQuest(quest: "Smile at a Stranger")
+                DailyQuest(quest: "Smile at a Stranger", streak: 6)
                 
             }
             .offset(y: -125)
+            
+            ZStack{ // Mood Tracker
+                Rectangle()
+                    .fill(Color(hex:0xF7CE9B))
+                    .frame(width: 360, height: 120)
+                    .cornerRadius(20)
+                    .shadow(color: .black, radius: 1, x: 0, y: 3)
+                VStack(spacing: 40){
+                    Text("**Mood Tracker**")
+                        .font(.title2)
+                        .foregroundStyle(Color(hex: 0x364F23))
+                    HStack(spacing: 15){ //mood buttons
+                        Button(action: {
+                                   print("Mood1 button tapped!")
+                               }) {
+                                   Image("Mood1")
+                                       .resizable()
+                                       .frame(width: 50, height: 50) // Adjust size as needed
+                               }
+                        Button(action: {
+                                   print("Mood2 button tapped!")
+                               }) {
+                                   Image("Mood2")
+                                       .resizable()
+                                       .frame(width: 50, height: 50) // Adjust size as needed
+                               }
+                        Button(action: {
+                                   print("Mood3 button tapped!")
+                               }) {
+                                   Image("Mood3")
+                                       .resizable()
+                                       .frame(width: 50, height: 50) // Adjust size as needed
+                               }
+                        Button(action: {
+                                   print("Mood4 button tapped!")
+                               }) {
+                                   Image("Mood4")
+                                       .resizable()
+                                       .frame(width: 50, height: 50) // Adjust size as needed
+                               }
+                        Button(action: {
+                                   print("Mood5 button tapped!")
+                               }) {
+                                   Image("Mood5")
+                                       .resizable()
+                                       .frame(width: 50, height: 50) // Adjust size as needed
+                               }
+                        
+                    }
+                    .offset(y: -5)
+                }
+                
+            }
+            .offset(y: 75)
             
             ZStack{ //Today's Quote
                 Rectangle()
@@ -134,7 +195,7 @@ struct ContentView: View {
                 }
                 
             }
-            .offset(x: -100, y: 100)
+            .offset(x: -100, y: 250)
             
             ZStack{ // Journal Tab
                 Rectangle()
@@ -155,25 +216,9 @@ struct ContentView: View {
                 .offset(y: -40)
                 
             }
-            .offset(x: 100, y: 100)
+            .offset(x: 100, y: 250)
             
-            ZStack{ // Fitness Tips
-                Rectangle()
-                    .fill(Color(hex:0xF7CE9B))
-                    .frame(width: 360, height: 120)
-                    .cornerRadius(20)
-                    .shadow(color: .black, radius: 1, x: 0, y: 3)
-                VStack(spacing: 40){
-                    Text("**Breathing Exercises**")
-                        .font(.title2)
-                        .foregroundStyle(Color(hex: 0x364F23))
-                    Text("**breathe in... and out**")
-                        .font(.body)
-                        .foregroundStyle(Color(hex: 0x364F23))
-                }
-                
-            }
-            .offset(y: 265)
+           
             
 
             Rectangle() // Bottom Navigation Bar
