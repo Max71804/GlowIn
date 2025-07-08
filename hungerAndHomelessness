@@ -1,0 +1,135 @@
+//
+//  ContentView.swift
+//  HandH
+//
+//  Created by SandboxLab on 7/7/25.
+//
+
+
+
+
+
+import SwiftUI
+
+
+extension Color {
+    init(hex: Int, opacity: Double = 1) {
+        self.init(
+            .sRGB,
+            red: Double((hex >> 16) & 0xff) / 255,
+            green: Double((hex >> 08) & 0xff) / 255,
+            blue: Double((hex >> 00) & 0xff) / 255,
+            opacity: opacity
+        )
+    }
+}
+
+struct ContentView: View {
+    
+    var body: some View {
+        
+        
+        ZStack {
+            Color(hex: 0xFCF1C6) // Background color
+                .ignoresSafeArea()
+            Text("🍲**Hunger and Homelessness**")
+                .frame(width: 380, height: 100)
+                .padding(.leading, 0)
+                .font(.title)
+                .offset(y:-320)
+                .foregroundStyle(Color(hex: 0x364F23))
+            Rectangle() // Bottom Navigation Bar
+                .fill(Color(hex: 0xF7CC86))
+                .frame(width: 400, height: 90)
+                .offset(y:400)
+            VStack(alignment: .leading, spacing: 40){
+                HStack(alignment: .top){
+                    Text("•")
+                        .foregroundStyle(Color(hex: 0x364F23))
+                        .font(.title)
+                    Text("Greater Chicago Food Depository – repack food, assist in distribution centers")
+                        .foregroundStyle(Color(hex: 0x364F23))
+                        .font(.title2)
+                }
+                HStack(alignment: .top){
+                    Text("•")
+                        .foregroundStyle(Color(hex: 0x364F23))
+                        .font(.title)
+                    Text("Blessings in a Backpack – pack weekend food for food-insecure children. ")
+                        .foregroundStyle(Color(hex: 0x364F23))
+                        .font(.title2)
+                }
+                HStack(alignment: .top){
+                    Text("•")
+                        .foregroundStyle(Color(hex: 0x364F23))
+                        .font(.title)
+                    Text("The Love Fridge Chicago – stock and maintain community fridges across the city. ")
+                        .foregroundStyle(Color(hex: 0x364F23))
+                        .font(.title2)
+                }
+
+                
+                
+            }
+            HStack(spacing: 30){ // Nav. Bar Buttons
+                Button(action: {
+                           print("Map button tapped!")
+                       }) {
+                           Image("Map")
+                               .resizable()
+                               .frame(width: 40, height: 40) // Adjust size as needed
+                       }
+                Button(action: {
+                           print("Achievements button tapped!")
+                       }) {
+                           Image("Achievements")
+                               .resizable()
+                               .frame(width: 40, height: 40) // Adjust size as needed
+                       }
+                Button(action: {
+                           print("Home button tapped!")
+                       }) {
+                           Image("Home")
+                               .resizable()
+                               .frame(width: 40, height: 40) // Adjust size as needed
+                       }
+                Button(action: {
+                           print("Feel Good button tapped!")
+                       }) {
+                           Image("Feel Good")
+                               .resizable()
+                               .frame(width: 40, height: 40) // Adjust size as needed
+                       }
+                Button(action: {
+                           print("Account button tapped!")
+                       }) {
+                           Image("Account")
+                               .resizable()
+                               .frame(width: 40, height: 40) // Adjust size as needed
+                       }
+            }
+            .offset(y:390)
+
+                
+            
+            
+             
+            
+            
+            
+            
+        }
+    }
+}
+                
+                
+                
+                
+                
+                
+                
+    
+
+#Preview {
+    ContentView()
+}
