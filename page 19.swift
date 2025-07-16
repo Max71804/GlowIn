@@ -22,7 +22,7 @@ struct page_19: View {
         Achievement(title: "tell someone you appreciate them", date: "3/2/25", color: Color(red: 180/255, green: 170/255, blue: 170/255)),
         Achievement(title: "reach out to a distant friend", date: "3/3/25", color: Color(red: 255/255, green: 252/255, blue: 153/255)),
         Achievement(title: "call a distant family member", date: "3/4/25", color: Color(red: 255/255, green: 252/255, blue: 153/255)),
-        Achievement(title: "give someone a small gift", date: "3/5/25", color: Color(red: 230/255, green: 223/255, blue: 255/255)),
+        Achievement(title: "give someone a small gift", date: "3/5/25", color: Color(red: 180/255, green: 200/255, blue: 220/255)),
         Achievement(title: "thank someone", date: "3/6/25", color: Color(red: 255/255, green: 165/255, blue: 120/255))
     ]
     
