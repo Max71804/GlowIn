@@ -9,7 +9,6 @@ import SwiftUI
 import MapKit
 
 struct WelcomePage: View {
-    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var navigationPath: NavigationPathManager
 
     // State variables to control opacity for fade-in effect
@@ -73,7 +72,7 @@ struct WelcomePage: View {
                 HStack {
                     Button(action: {
                         // Action for Skip button: Navigate directly to ProfileView
-                        navigationPath.path.append("ProfileView")
+                        navigationPath.navigate(to: "ProfileView")
                         print("Skip tapped, navigating to Profile View")
                     }) {
                         Text("Skip")
@@ -86,7 +85,7 @@ struct WelcomePage: View {
 
                     Button(action: {
                         // Action for Next button: Navigate to LoginPagever1
-                        navigationPath.path.append("LoginPagever1")
+                        navigationPath.navigate(to: "LoginPagever1")
                         print("Next tapped, navigating to Login Page")
                     }) {
                         Text("Next")
@@ -101,24 +100,18 @@ struct WelcomePage: View {
                 }
                 .padding(.bottom, 20)
             }
-            .navigationDestination(for: String.self) { viewID in
-                // Define navigation destinations based on String identifiers
-                if viewID == "LoginPagever1" {
-                    login() // Your LoginPagever1 struct
-                } else if viewID == "ProfileView" {
-                    ProfileView()
-                }
-            }
+            // REMOVED: .navigationDestination - this is now handled centrally in your App file
         }
         .onAppear {
             // Trigger animations when the view appears
+            // The logo animates first
             logoOpacity = 1.0
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // Delay text1 by 1 second
-                text1Opacity = 1.0
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { // Delay text2 by 2 seconds
-                text2Opacity = 1.0
-            }
+
+            // Text 1 animates after a 1-second delay, leveraging the animation on the view
+            text1Opacity = 1.0
+
+            // Text 2 animates after a 2-second delay, leveraging the animation on the view
+            text2Opacity = 1.0
         }
     }
 }
