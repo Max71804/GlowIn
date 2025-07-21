@@ -12,4 +12,16 @@ import SwiftUI
 // It should be an EnvironmentObject.
 class NavigationPathManager: ObservableObject {
     @Published var path = NavigationPath()
+    
+    func navigate(to destination: String) {
+        path.append(destination)
+    }
+    
+    func navigateBack() {
+        path.removeLast()
+    }
+    
+    func navigateToRoot() {
+        path.removeLast(path.count)
+    }
 }
