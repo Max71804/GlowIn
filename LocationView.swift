@@ -24,6 +24,7 @@ struct LocationView: View {
     @State private var searchText: String = ""
     @State private var currentSheetHeight: CGFloat = UIScreen.main.bounds.height * 0.3 // Initial height of the sheet
     @State private var sheetDragOffset: CGFloat = 0
+    @EnvironmentObject var navigationPath: NavigationPathManager
 
     let minSheetHeight: CGFloat = UIScreen.main.bounds.height * 0.3
     let maxSheetHeight: CGFloat = UIScreen.main.bounds.height * 0.85
@@ -310,7 +311,8 @@ struct LocationView: View {
 
                         // Home Icon
                         Button(action: {
-                            selectedTab = "Home"
+                            navigationPath.path = NavigationPath() // Clear path
+                            navigationPath.path.append("HomeView")
                             print("Home tab tapped")
                         }) {
                             VStack {
@@ -326,6 +328,8 @@ struct LocationView: View {
                         // Action Icon (Fist) - Changed to "hand.raised.fill" from "fist.raised.fill" for more volunteering feel
                         Button(action: {
                             selectedTab = "Action"
+                            navigationPath.path = NavigationPath() // Clear path
+                            navigationPath.path.append("ActionView")
                             print("Action tab tapped")
                         }) {
                             VStack {
@@ -341,6 +345,8 @@ struct LocationView: View {
                         // Profile Icon
                         Button(action: {
                             selectedTab = "Profile"
+                            navigationPath.path = NavigationPath() // Clear path
+                            navigationPath.path.append("ProfileView")
                             print("Profile tab tapped")
                         }) {
                             VStack {
@@ -515,8 +521,12 @@ struct StatusTag: View {
 }
 
 // MARK: - Preview Provider
+
 struct LocationView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationView()
+        NavigationStack {
+            LocationView()
+                .environmentObject(NavigationPathManager())
+        }
     }
 }
