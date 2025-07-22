@@ -97,7 +97,7 @@ struct Profilepic: View {
 
 
 struct HomeView: View {
-    @State private var selectedTab: String = "Profile"
+    @State private var selectedTab: String = "Home"
     @EnvironmentObject var navigationPath: NavigationPathManager
     @Environment(\.dismiss) var dismiss
     
@@ -306,7 +306,9 @@ struct HomeView: View {
                     // Person Icon (Current Page)
                     Button(action: {
                         selectedTab = "Profile"
-                        print("Profile tab tapped (already on ProfileView)")
+                        navigationPath.path = NavigationPath() // Clear path
+                        navigationPath.path.append("ProfileView")
+                        print("Profile tab tapped")
                         // This is the current view, so no navigation needed, or pop to root of Profile tab
                     }) {
                         VStack {
