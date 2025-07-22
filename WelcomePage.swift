@@ -32,7 +32,7 @@ struct WelcomePage: View {
                 Spacer()
 
                 // Central Image (the one with the arch, sun, and waves) - Fades in first
-                Image("GlowIn") // Make sure this image is in your Assets.xcassets
+                Image("arch") // Make sure this image is in your Assets.xcassets
                     .resizable() // Make the image resizable
                     .aspectRatio(contentMode: .fit) // Maintain aspect ratio, fit within bounds
                     .frame(width: 300, height: 400) // Adjust the frame size as needed to match the original arch size
@@ -125,3 +125,4 @@ struct WelcomePage_Previews: PreviewProvider {
         }
     }
 }
+
