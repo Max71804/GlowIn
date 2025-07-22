@@ -9,7 +9,7 @@ struct login: View {
     @EnvironmentObject var navigationPath: NavigationPathManager // Custom path manager for NavigationStack
 
     let orange = Color(red: 255/255, green: 93/255, blue: 0/255)       // #FF5D00
-    let cream = Color(red: 255/255, green: 239/255, blue: 193/255)     // #FFEFC1
+    let cream = Color(red: 0.96, green: 0.95, blue: 0.88)   
     let darkGreen = Color(red: 54/255, green: 79/255, blue: 35/255)    // #364F23
     let softOrange = Color(red: 255/255, green: 202/255, blue: 123/255)
 

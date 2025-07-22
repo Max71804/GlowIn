@@ -3,6 +3,7 @@ import SwiftUI
 @main
 struct GlowInApp: App {
     @StateObject private var navigationPath = NavigationPathManager()
+    @StateObject private var mood = moodModel()
 
     var body: some Scene {
         WindowGroup {
@@ -28,13 +29,14 @@ struct GlowInApp: App {
                     case "AchievementsView":
                         WeeklyAchievementsView()
                     case "HomeView":
-                        Text("Placeholder for HomeView")
+                        HomeView()
                     default:
                         Text("Unknown Destination: \(viewID)")
                     }
                 }
             }
             .environmentObject(navigationPath)
+            .environmentObject(mood)
         }
     }
 }

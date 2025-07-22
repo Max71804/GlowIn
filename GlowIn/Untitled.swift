@@ -1,0 +1,358 @@
+
+//
+//  HomeView.swift
+//  GlowIn
+//
+//  Created by SandboxLab on 7/22/25.
+//
+
+
+import SwiftUI
+
+extension TimeInterval { // extension for quest timer
+    var asHMS: String {
+        let hours = Int(self) / 3600
+        let minutes = (Int(self) % 3600) / 60
+        let seconds = Int(self) % 60
+        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+    }
+}
+
+
+
+
+
+extension Color {
+    init(hex: Int, opacity: Double = 1) {
+        self.init(
+            .sRGB,
+            red: Double((hex >> 16) & 0xff) / 255,
+            green: Double((hex >> 08) & 0xff) / 255,
+            blue: Double((hex >> 00) & 0xff) / 255,
+            opacity: opacity
+        )
+    }
+}
+
+// Makes user PFP in a circular format.
+struct Profilepic: View {
+    let imageName: String
+    let borderColor: Color
+    let borderWidth: CGFloat
+    let size: CGFloat
+    
+    var body: some View {
+        Image(imageName)
+            .resizable()
+            .frame(width: size, height: size)
+            .clipShape(Circle())
+            .overlay(Circle().stroke(borderColor, lineWidth: borderWidth))
+    }
+}
+ struct DailyQuest: View {
+    let quest: String
+    let streak: Int
+
+   var body: some View {
+       Rectangle()
+        .fill(Color(hex:0xE77E42))
+        .frame(width: 380, height: 240)
+        .cornerRadius(20)
+        .shadow(color: .black, radius: 1, x: 0, y: 3)
+       Text(quest)
+           .foregroundStyle(Color(hex: 0x364F23))
+           .font(.title2)
+       Image("Trophy")
+           .offset(x: -160, y: -80)
+       Text("Daily Quest:")
+           .offset(x: -80, y: -80)
+           .font(.title2)
+       Button(action: {
+                  print("Complete button tapped!")
+              }) {
+                  Image("Check")
+                      .resizable()
+                      .frame(width: 40, height: 40)
+              }
+              .offset(x: 100, y: 80)
+       Text(" \(TimeInterval(83440).asHMS)")
+           .offset(x: 140, y: -80)
+       Text("time left:")
+           .font(.footnote)
+           .foregroundStyle(Color(hex: 0xFFFFFF))
+           .offset(x: 120, y: -100)
+       Image("ProgressBar")
+           .offset(x: -70, y: 80)
+       Text("0%")
+           .offset(x: 50, y:80)
+       Text("🔥 \(streak)")
+           .offset(x: 150, y:80)
+           .font(.title2)
+           .foregroundStyle(Color(.white))
+            
+        }
+   }
+
+
+
+
+struct HomeView: View {
+    @State private var selectedTab: String = "Profile"
+    @EnvironmentObject var navigationPath: NavigationPathManager
+    @Environment(\.dismiss) var dismiss
+    
+    var body: some View {
+        @State var text = ""
+        @State var dailyquote = "If you can dream it, you can do it. - Walt Disney"
+        
+ 
+        ZStack {
+            Color(hex: 0xFCF1C6) // Background color
+                .ignoresSafeArea()
+            Text("***welcome back,***")
+                .font(.body)
+                .offset(x: -120, y:-320)
+                .foregroundStyle(Color(hex: 0x364F23))
+            Text("**[Insert Name]**")
+                .font(.title2)
+                .offset(x: -100, y:-280)
+                .foregroundStyle(Color(hex: 0xFF5D00))
+            Profilepic(imageName: "PFP", borderColor: Color("Black"), borderWidth: 6, size: 65)
+                .offset(x: 150, y: -320)
+            
+            
+            ZStack{ // Quest Tab
+                DailyQuest(quest: "Smile at a Stranger", streak: 6)
+                
+            }
+            .offset(y: -125)
+            
+            ZStack{ // Mood Tracker
+                Rectangle()
+                    .fill(Color(hex:0xF7CE9B))
+                    .frame(width: 360, height: 120)
+                    .cornerRadius(20)
+                    .shadow(color: .black, radius: 1, x: 0, y: 3)
+                VStack(spacing: 40){
+                    Text("**Mood Tracker**")
+                        .font(.title2)
+                        .foregroundStyle(Color(hex: 0x364F23))
+                    HStack(spacing: 15){ //mood buttons
+                        Button(action: {
+                                   print("Mood1 button tapped!")
+                               }) {
+                                   Image("Mood1")
+                                       .resizable()
+                                       .frame(width: 50, height: 50) // Adjust size as needed
+                               }
+                        Button(action: {
+                                   print("Mood2 button tapped!")
+                               }) {
+                                   Image("Mood2")
+                                       .resizable()
+                                       .frame(width: 50, height: 50) // Adjust size as needed
+                               }
+                        Button(action: {
+                                   print("Mood3 button tapped!")
+                               }) {
+                                   Image("Mood3")
+                                       .resizable()
+                                       .frame(width: 50, height: 50) // Adjust size as needed
+                               }
+                        Button(action: {
+                                   print("Mood4 button tapped!")
+                               }) {
+                                   Image("Mood4")
+                                       .resizable()
+                                       .frame(width: 50, height: 50) // Adjust size as needed
+                               }
+                        Button(action: {
+                                   print("Mood5 button tapped!")
+                               }) {
+                                   Image("Mood5")
+                                       .resizable()
+                                       .frame(width: 50, height: 50) // Adjust size as needed
+                               }
+                        
+                    }
+                    .offset(y: -5)
+                }
+                
+            }
+            .offset(y: 75)
+            
+            ZStack{ //Today's Quote
+                Rectangle()
+                    .fill(Color(hex:0xDCDB95))
+                    .frame(width: 180, height: 180)
+                    .cornerRadius(20)
+                    .shadow(color: .black, radius: 1, x: 0, y: 3)
+                VStack{
+                    Text("**Today's Quote**")
+                        .foregroundStyle(Color(hex: 0x364F23))
+                        .font(.title3)
+                        .offset(y: -30)
+                    
+                    Text(dailyquote)
+                        .frame(width: 155, height: 80)
+                        .padding(.leading, 0)
+                        .foregroundStyle(Color(hex: 0x364F23))
+                        .offset(y: -20)
+                }
+                
+            }
+            .offset(x: -100, y: 250)
+            
+            ZStack{ // Journal Tab
+                Rectangle()
+                    .fill(Color(hex:0xF9DBA4))
+                    .frame(width: 180, height: 180)
+                    .cornerRadius(20)
+                    .shadow(color: .black, radius: 1, x: 0, y: 3)
+                VStack(spacing: 40){
+                    Text("**Journal**")
+                        .font(.title2)
+                        .foregroundStyle(Color(hex: 0x364F23))
+                        .offset(y: 55)
+                    TextField("Type Here", text: $text)
+                        .font(.body)
+                        .frame(width: 160, height: 140)
+                        .foregroundStyle(Color(hex:0x364F23))
+                }
+                .offset(y: -40)
+                
+            }
+            .offset(x: 100, y: 250)
+            
+           
+            
+
+            // MARK: - Bottom Navigation Bar
+            VStack {
+                Divider()
+                    .background(Color(red: 0.25, green: 0.35, blue: 0.20).opacity(0.4))
+                    .padding(.horizontal, -20)
+
+                HStack {
+                    Spacer()
+                    // Location Icon
+                    Button(action: {
+                        selectedTab = "Location"
+                        print("Location tab tapped")
+                        navigationPath.path = NavigationPath()
+                        navigationPath.path.append("LocationView")
+                    }) {
+                        VStack {
+                            Image(systemName: "location.fill")
+                                .font(.title2)
+                            Text("Location")
+                                .font(.caption2)
+                        }
+                    }
+                    .foregroundColor(selectedTab == "Location" ? Color(red: 0.94, green: 0.45, blue: 0.24) : Color(red: 0.25, green: 0.35, blue: 0.20))
+                    Spacer()
+
+                    // Badge Icon (Navigate to AchievementEvaluationView)
+                    Button(action: {
+                        selectedTab = "Badge"
+                        print("Badge tab tapped, navigating to AchievementEvaluationView")
+                        navigationPath.path = NavigationPath() // Clear path
+                        navigationPath.path.append("AchievementEvaluationView")
+                    }) {
+                        VStack {
+                            Image(systemName: "rosette")
+                                .font(.title2)
+                            Text("Badge")
+                                .font(.caption2)
+                        }
+                    }
+                    .foregroundColor(selectedTab == "Badge" ? Color(red: 0.94, green: 0.45, blue: 0.24) : Color(red: 0.25, green: 0.35, blue: 0.20))
+                    Spacer()
+
+                    // Home Icon
+                    Button(action: {
+                        selectedTab = "Home"
+                        print("Home tab tapped")
+                        navigationPath.path = NavigationPath()
+                        navigationPath.path.append("HomeView")
+                    }) {
+                        VStack {
+                            Image(systemName: "house.fill")
+                                .font(.title2)
+                            Text("Home")
+                                .font(.caption2)
+                        }
+                    }
+                    .foregroundColor(selectedTab == "Home" ? Color(red: 0.94, green: 0.45, blue: 0.24) : Color(red: 0.25, green: 0.35, blue: 0.20))
+                    Spacer()
+
+                    // Action Icon (Navigate to ActionView)
+                    Button(action: {
+                        selectedTab = "Action"
+                        print("Action tab tapped, navigating to ActionView")
+                        navigationPath.path = NavigationPath()
+                        navigationPath.path.append("ActionView")
+                    }) {
+                        VStack {
+                            Image(systemName: "hand.raised.fill")
+                                .font(.title2)
+                            Text("Action")
+                                .font(.caption2)
+                        }
+                    }
+                    .foregroundColor(selectedTab == "Action" ? Color(red: 0.94, green: 0.45, blue: 0.24) : Color(red: 0.25, green: 0.35, blue: 0.20))
+                    Spacer()
+
+                    // Person Icon (Current Page)
+                    Button(action: {
+                        selectedTab = "Profile"
+                        print("Profile tab tapped (already on ProfileView)")
+                        // This is the current view, so no navigation needed, or pop to root of Profile tab
+                    }) {
+                        VStack {
+                            Image(systemName: "person.fill")
+                                .font(.title2)
+                            Text("Profile")
+                                .font(.caption2)
+                        }
+                    }
+                    .foregroundColor(selectedTab == "Profile" ? Color(red: 0.94, green: 0.45, blue: 0.24) : Color(red: 0.25, green: 0.35, blue: 0.20))
+                    Spacer()
+                }
+                .padding(.vertical, 10)
+                .background(Color(red: 0.96, green: 0.95, blue: 0.88))
+                .cornerRadius(20)
+                .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: -2)
+            }
+            .padding(.bottom, 0)
+            .offset(y: 390)
+        }
+        .navigationDestination(for: String.self) { viewID in
+            if viewID == "Moodtracker" {
+                moodTracker()
+            } else if viewID == "AchievementsView" {
+                WeeklyAchievementsView()
+            } else if viewID == "LocationView" {
+                LocationView() // Changed from placeholder
+            } else if viewID == "HomeView" {
+                Text("Placeholder for HomeView")
+            } else if viewID == "ActionView" {
+                ActionView()
+            } else if viewID == "AchievementEvaluationView" { // Added AchievementEvaluationView
+                // You might need to pass a 'completedQuestText' here if this is the entry point
+                AchievementEvaluation(completedQuestText: "Your latest quest")
+            }
+        }
+    }
+}
+
+
+// MARK: - Preview Provider
+struct HomeView_Previews: PreviewProvider {
+static var previews: some View {
+    NavigationStack {
+        HomeView()
+            .environmentObject(NavigationPathManager())
+    }
+}
+}

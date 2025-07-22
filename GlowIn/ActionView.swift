@@ -251,7 +251,7 @@ enum CategoryType: String, CaseIterable {
     // This property already provides SF Symbols
     var iconName: String {
         switch self {
-        case .hungerHomelessness: return "bowl.fill"
+        case .hungerHomelessness: return "house.fill"
         case .environmentConservation: return "leaf.fill"
         case .educationYouth: return "book.closed.fill"
         case .animalWelfare: return "pawprint.fill"
@@ -281,7 +281,7 @@ struct VolunteeringContent: View {
                     // Hunger & Homelessness
                     // Now passing sfSymbolName to CategoryCard
                     CategoryCard(sfSymbolName: CategoryType.hungerHomelessness.iconName, text: CategoryType.hungerHomelessness.rawValue) { category in
-                        navigationPath.path.append(category.rawValue)
+                        navigationPath.path.append(category)
                     }
                     // Environment & Conservation
                     CategoryCard(sfSymbolName: CategoryType.environmentConservation.iconName, text: CategoryType.environmentConservation.rawValue) { category in

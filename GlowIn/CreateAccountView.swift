@@ -18,7 +18,7 @@ struct CreateAccountView: View {
 
     let darkGreen = Color(red: 54/255, green: 79/255, blue: 35/255) // #364F23
     let orange = Color(red: 255/255, green: 93/255, blue: 0/255)
-    let cream = Color(red: 255/255, green: 239/255, blue: 193/255)
+    let cream = Color(red: 0.96, green: 0.95, blue: 0.88)
     let softOrange = Color(red: 255/255, green: 202/255, blue: 123/255)
 
     var body: some View {

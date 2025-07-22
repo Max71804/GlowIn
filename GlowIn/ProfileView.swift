@@ -8,8 +8,9 @@ struct ProfileView: View {
     @State private var selectedTab: String = "Profile" // Default to Profile tab
 
     @EnvironmentObject var navigationPath: NavigationPathManager
-    
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var imagedisplay: moodModel
+    
 
     var body: some View {
         ZStack {
@@ -108,12 +109,14 @@ struct ProfileView: View {
 
                         // Content for mood (centered within the main card)
                         VStack(spacing: 8) { // Reduced spacing
-                            Image("happy") // Assuming 'happy' is an asset for current mood
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 100, height: 100) // Smaller mood icon
-                                .padding(.bottom, 0)
-                        }
+                            if let imageName = imagedisplay.mood{
+                                Image(imageName)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 100, height: 100) // Smaller mood icon
+                                    .padding(.bottom, 0)
+                               }
+                            }
 
                         // Streak Card (positioned on top, slightly offset)
                         HStack {

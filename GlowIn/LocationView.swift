@@ -1,3 +1,10 @@
+//
+//  LocationView.swift
+//  GlowIn
+//
+//  Created by SandboxLab on 7/6/25.
+//
+
 import SwiftUI
 import MapKit // Import MapKit for the map view
 import CoreLocation // For CLLocationCoordinate2D and CLLocationManager
