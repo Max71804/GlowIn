@@ -1,0 +1,12 @@
+//
+//  MoodManager.swift
+//  GlowIn
+//
+//  Created by SandboxLab on 7/21/25.
+//
+
+import SwiftUI
+
+class moodModel: ObservableObject {
+    @Published var mood: String? = nil
+}
