@@ -29,7 +29,7 @@ struct GlowInApp: App {
                     case "AchievementsView":
                         WeeklyAchievementsView()
                     case "HomeView":
-                        Text("Placeholder for HomeView")
+                        HomeView()
                     default:
                         Text("Unknown Destination: \(viewID)")
                     }
@@ -37,6 +37,7 @@ struct GlowInApp: App {
             }
             .environmentObject(navigationPath)
             .environmentObject(mood)
+            
         }
     }
 }
