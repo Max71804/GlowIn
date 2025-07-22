@@ -10,6 +10,8 @@ import SwiftUI
 struct moodTracker: View {
     @Environment(\.dismiss) var dismiss // For navigating back
     @EnvironmentObject var navigationPath: NavigationPathManager // Added for navigation
+    @EnvironmentObject var imagedisplay: moodModel
+
 
     var body: some View {
         let cream = Color(red: 255/255, green: 239/255, blue: 193/255)
@@ -31,6 +33,7 @@ struct moodTracker: View {
                 HStack {
                     Button(action: {
                         print("Sad face tapped")
+                        imagedisplay.mood = "sad"
                     }) {
                         VStack {
                             Image("sad") // Ensure you have "sad" image asset in Assets.xcassets
@@ -46,6 +49,7 @@ struct moodTracker: View {
 
                     Button(action: {
                         print("Not good face tapped")
+                        imagedisplay.mood = "notGood"
                     }) {
                         VStack {
                             Image("notGood") // Ensure you have "notGood" image asset in Assets.xcassets
@@ -64,6 +68,7 @@ struct moodTracker: View {
                 HStack {
                     Button(action: {
                         print("Okay face tapped")
+                        imagedisplay.mood = "okay"
                     }) {
                         VStack {
                             Image("okay") // Ensure you have "okay" image asset in Assets.xcassets
@@ -79,6 +84,7 @@ struct moodTracker: View {
 
                     Button(action: {
                         print("Good face tapped")
+                        imagedisplay.mood = "good"
                     }) {
                         VStack {
                             Image("good") // Ensure you have "good" image asset in Assets.xcassets
@@ -96,6 +102,7 @@ struct moodTracker: View {
 
                 Button(action: {
                     print("Happy face tapped")
+                    imagedisplay.mood = "happy"
                 }) {
                     VStack {
                         Image("happy") // Ensure you have "happy" image asset in Assets.xcassets
@@ -137,6 +144,9 @@ struct moodTracker: View {
 
                 Spacer() // Pushes content towards center
             }
+        }
+        .onAppear { // <--- ADDED THIS BLOCK
+            print("+++ Moodtracker: View has appeared! +++")
         }
         .navigationBarBackButtonHidden(true) // Hide default back button
     }
