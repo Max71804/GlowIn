@@ -9,7 +9,6 @@ import SwiftUI
 import MapKit
 
 struct WelcomePage: View {
-    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var navigationPath: NavigationPathManager
 
     // State variables to control opacity for fade-in effect
@@ -33,7 +32,7 @@ struct WelcomePage: View {
                 Spacer()
 
                 // Central Image (the one with the arch, sun, and waves) - Fades in first
-                Image("GlowIn") // Make sure this image is in your Assets.xcassets
+                Image("arch") // Make sure this image is in your Assets.xcassets
                     .resizable() // Make the image resizable
                     .aspectRatio(contentMode: .fit) // Maintain aspect ratio, fit within bounds
                     .frame(width: 300, height: 400) // Adjust the frame size as needed to match the original arch size
@@ -73,7 +72,7 @@ struct WelcomePage: View {
                 HStack {
                     Button(action: {
                         // Action for Skip button: Navigate directly to ProfileView
-                        navigationPath.path.append("ProfileView")
+                        navigationPath.navigate(to: "ProfileView")
                         print("Skip tapped, navigating to Profile View")
                     }) {
                         Text("Skip")
@@ -86,7 +85,7 @@ struct WelcomePage: View {
 
                     Button(action: {
                         // Action for Next button: Navigate to LoginPagever1
-                        navigationPath.path.append("LoginPagever1")
+                        navigationPath.navigate(to: "LoginPagever1")
                         print("Next tapped, navigating to Login Page")
                     }) {
                         Text("Next")
@@ -101,14 +100,7 @@ struct WelcomePage: View {
                 }
                 .padding(.bottom, 20)
             }
-            .navigationDestination(for: String.self) { viewID in
-                // Define navigation destinations based on String identifiers
-                if viewID == "LoginPagever1" {
-                    login() // Your LoginPagever1 struct
-                } else if viewID == "ProfileView" {
-                    ProfileView()
-                }
-            }
+            // REMOVED: .navigationDestination - this is now handled centrally in your App file
         }
         .onAppear {
             // Trigger animations when the view appears
