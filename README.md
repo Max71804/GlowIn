@@ -31,4 +31,7 @@ The design focuses on simplicity, encouragement, and small wins that build over 
 ### Achievements  
 - Earn badges for streaks, quests completed, mood consistency, and more.  
 - Turns personal growth into a rewarding, gamified experience.
+## 🎥 Demo Video  
+[▶️ Watch the GlowIn demo](https://drive.google.com/file/d/19dyY0Eiroda72vG8N9tn5o9CwMK16O3n/view?usp=sharing)
+
 
